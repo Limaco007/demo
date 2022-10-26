@@ -9,18 +9,18 @@ scheduler = APScheduler()
 db = SQLAlchemy()
 # DB_NAME = "calendarapp.db"
 UPLOAD_FOLDER = 'website/static/uploads/'
-ENV = 'dev'
+ENV = 'prod'
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjhjhjhjhdhjhdhjhgsjkhdshds'
-    # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     if ENV == 'dev':
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/calendarapp'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/demodata'
     else:
         app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://doadmin:AVNS_nSs41a4TWjWxIWMe-bO@db-postgresql-nyc1-72237-do-user-12666756-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=require'
 
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
     db.init_app(app)
@@ -56,8 +56,9 @@ def send_reminder():
     print("Reminder sent!!!!")
 
 def create_database(app):
-    if not path.exists('website/' + DB_NAME):
-        db.create_all(app=app)
+    # if not path.exists('website/' + DB_NAME):
+    #     db.create_all(app=app)
+    db.create_all(app=app)
     print('Created Database!')
 
 def send_email_job(app):
