@@ -58,7 +58,7 @@ def send_reminder():
 def create_database(app):
     # if not path.exists('website/' + DB_NAME):
     #     db.create_all(app=app)
-    db.create_all(app=app)
+    #db.create_all(app=app)
     print('Created Database!')
 
 def send_email_job(app):
