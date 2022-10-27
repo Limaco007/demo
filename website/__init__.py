@@ -18,7 +18,7 @@ def create_app():
     if ENV == 'dev':
         app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost/demodata'
     else:
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://troologserver:@Getout12@troolog-chima-server.postgres.database.azure.com/demodata?sslmode=require'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://troologserver:G!etout12@troolog-chima-server.postgres.database.azure.com/demodata?sslmode=require'
 
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -45,7 +45,7 @@ def create_app():
     def load_user(id):
         return User.query.get(int(id))
 
-    send_email_job(app)
+    #send_email_job(app)
 
     return app
 
