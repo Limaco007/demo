@@ -4,14 +4,15 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from flask_apscheduler import APScheduler
+import logging
 
 scheduler = APScheduler()
 db = SQLAlchemy()
-# DB_NAME = "calendarapp.db"
 UPLOAD_FOLDER = 'website/static/uploads/'
 ENV = 'prod'
 def create_app():
     app = Flask(__name__)
+    logging.basicConfig(filename='record.log', level=logging.CRITICAL, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
     app.config['SECRET_KEY'] = 'hjhjhjhjhdhjhdhjhgsjkhdshds'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
